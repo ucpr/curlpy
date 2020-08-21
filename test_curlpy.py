@@ -10,6 +10,6 @@ def test_get():
 
 
 def test_fetch_body():
-    #r = Curlpy().url("https://example.com").get().fetch()
-    #print(r.body.decode("utf-8"))
+    # r = Curlpy().url("https://example.com").get().fetch()
+    # print(r.body.decode("utf-8"))
     pass

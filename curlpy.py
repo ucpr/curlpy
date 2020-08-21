@@ -5,7 +5,8 @@ from pycurl import Curl
 
 class Curlpy:
     curl: Curl
-    def __init__(self, url = ""):
+
+    def __init__(self, url=""):
         self.curl: Curl = Curl()
         self.buffer: BytesIO = BytesIO()
 
