@@ -1,4 +1,5 @@
 # curlpy
+[![Actions Status](https://github.com/ucpr/curlpy/workflows/CI/badge.svg?branch=master)](https://github.com/ucpr/curlpy/actions)
 
 ## Description
 curlpy can send an HTTP request like you would handle curl on the command line.  
