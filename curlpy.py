@@ -1,32 +1,32 @@
-from io import BytesIO
-import pycurl
-from pycurl import Curl
+from typing import Dict
+from urllib.request import Request, urlopen
 
 
 class Curlpy:
-    curl: Curl
-
     def __init__(self, url=""):
-        self.curl: Curl = Curl()
-        self.buffer: BytesIO = BytesIO()
+        self._url: str = url
+        self._method: str = "GET"
+        self._headers: Dict[str, str] = dict()
+        self._query: Dict[str, str] = dict()
 
-        self.body: bytes = ""
-
-        self.curl.setopt(pycurl.WRITEDATA, self.buffer)
+        self.body: str = ""
+        self.status: int = -1
 
     def url(self, url: str):
-        self.curl.setopt(pycurl.URL, url)
+        self._url = url
         return self
 
     def X(self, method: str):
-        self.curl.setopt(pycurl.CUSTOMREQUEST, method)
+        self._method = method
         return self
 
     def get(self):
         return self.X("GET")
 
     def fetch(self):
-        self.curl.perform()
-        self.curl.close()
-        self.body = self.buffer.getvalue()
+        req = Request(url=self._url, method=self._method, headers=self._headers,)
+        with urlopen(req) as res:
+            self.body = res.read()
+            self.status = res.getcode()
+
         return self
