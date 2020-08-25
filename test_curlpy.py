@@ -10,6 +10,6 @@ def test_get():
 
 
 def test_fetch_body():
-    # r = Curlpy().url("https://example.com").get().fetch()
+    # r = Curlpy().url("https://example.com").get().fetch().o("./hoge.txt")
     # print(r.body.decode("utf-8"))
     pass

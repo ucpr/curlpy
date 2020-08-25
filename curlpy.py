@@ -29,6 +29,14 @@ class Curlpy:
     def post(self):
         return self.request("POST")
 
+    def output(self, filename: str):
+        with open(filename, mode="w") as f:
+            f.write(self.body.decode())
+        return self
+
+    def o(self, filename: str):
+        return self.output(filename)
+
     def fetch(self):
         req = Request(url=self._url, method=self._method, headers=self._headers,)
         with urlopen(req) as res:
