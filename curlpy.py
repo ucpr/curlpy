@@ -16,12 +16,18 @@ class Curlpy:
         self._url = url
         return self
 
-    def X(self, method: str):
+    def request(self, method: str):
         self._method = method
         return self
 
+    def X(self, method: str):
+        return self.request(method)
+
     def get(self):
-        return self.X("GET")
+        return self.request("GET")
+
+    def post(self):
+        return self.request("POST")
 
     def fetch(self):
         req = Request(url=self._url, method=self._method, headers=self._headers,)
