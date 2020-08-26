@@ -37,6 +37,13 @@ class Curlpy:
     def o(self, filename: str):
         return self.output(filename)
 
+    def header(self, headers: Dict[str, str]):
+        self._headers.update(headers)
+        return self
+
+    def H(self, headers: Dict[str, str]):
+        return self.header(headers)
+
     def fetch(self):
         req = Request(url=self._url, method=self._method, headers=self._headers,)
         with urlopen(req) as res:
