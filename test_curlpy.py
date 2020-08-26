@@ -24,7 +24,12 @@ def test_post():
 
 
 def test_header():
-    r = Curlpy().url("https://example.com").header({"Content-Type": "text"}).H({"X-test": "hoge"})
+    r = (
+        Curlpy()
+        .url("https://example.com")
+        .header({"Content-Type": "text"})
+        .H({"X-test": "hoge"})
+    )
     assert r._headers["Content-Type"] == "text"
     assert r._headers["X-test"] == "hoge"
 
