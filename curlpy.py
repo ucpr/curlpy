@@ -29,13 +29,14 @@ class Curlpy:
     def post(self):
         return self.request("POST")
 
-    def output(self, filename: str):
-        with open(filename, mode="w") as f:
-            f.write(self.body.decode())
+    def output(self, filename: str, binary=False):
+        mode = "w" if not binary else "wb"
+        with open(filename, mode=mode) as f:
+            f.write(self.body)
         return self
 
-    def o(self, filename: str):
-        return self.output(filename)
+    def o(self, filename: str, binary=False):
+        return self.output(filename, binary=binary)
 
     def header(self, headers: Dict[str, str]):
         self._headers.update(headers)
