@@ -17,23 +17,59 @@ So I thought that I want something that can be programmed to handle curl from th
 ## Examples
 
 ### Simple HTTP request
-```python
-import curlpy
 
-req = curlpy("https://exapmple.com").X("GET")
-# or req = curlpy("https://example.com").get()
+sending a GET request.
 
-req = curlpy("https://exapmple.com").X("POST")
-# or req = curlpy("https://example.com").post()
+```bash
+$ curl https://example.com
 ```
 
+```python
+from curlpy import Curlpy
+
+req = curlpy("https://exapmple.com").fetch()
+
+print(req.body)
+```
+
+sending a POST request.
+
+```bash
+$ curl -X POST https://example.com
+```
+
+```python
+from curlpy import Curlpy
+
+req = curlpy("https://example.com").X("POST").fetch()
+```
+
+### File Download
+
+For example, use `/images/png` in httpbin.
+
+```bash
+$ curl -X GET "http://httpbin.org/image/png" -H  "accept: image/png" -o "hoge.png"
+```
+
+If you want to save the binary data, you need to pass the `binary` option to `True`.
+
+```python
+from curlpy import Curlpy
+
+req = curlpy("https://httpbin.org/image/png").H({"accept": "image/png"}).fetch().o("hoge.png", binary=True)
+```
+
+
 ## Contributions
+
 Welcome your contribution!
 
 It's tough to cover all the options. Send me a pull request if you don't see the options you need!  
 Also, if you find a bug, send me an Issue or pull request!
 
 ## Author
+
 taichi uchihara (contact@ucpr.dev)
 
 ## License
